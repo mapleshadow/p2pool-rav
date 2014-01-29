@@ -324,9 +324,9 @@ nets = dict(
     ),
     dogecoin=math.Object(
         PARENT=networks.nets['dogecoin'],
-        SHARE_PERIOD=15, # seconds target spacing
-        CHAIN_LENGTH=12*60*60//15, # shares
-        REAL_CHAIN_LENGTH=12*60*60//15, # shares
+        SHARE_PERIOD=10, # seconds target spacing|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        CHAIN_LENGTH=24*60*60//10, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
         TARGET_LOOKBEHIND=20, # shares coinbase maturity
         SPREAD=10, # blocks
         IDENTIFIER='D0D1D2D3B2F68CD9'.decode('hex'),
@@ -682,7 +682,24 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
-
+    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow
+        PARENT=networks.nets['cinnamoncoin'],
+        SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=24*60*60//10, # shares
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares
+        TARGET_LOOKBEHIND=20, # shares
+        SPREAD=6, # blocks
+        IDENTIFIER='a0c192dbe6e9f1a9'.decode('hex'),
+        PREFIX='c1c9e9f023e09e7a'.decode('hex'),
+        P2P_PORT=8658,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=False,
+        WORKER_PORT=9876,
+        BOOTSTRAP_ADDRS=''.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name

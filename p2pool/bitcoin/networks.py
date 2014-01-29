@@ -791,6 +791,29 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
+    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow
+        P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
+        P2P_PORT=19126,
+        ADDRESS_VERSION=28, #pubkey_address
+        RPC_PORT=19125,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'cinnamoncoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+	SUBSIDY_FUNC=lambda height: 64*100000000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=20, # s 
+        SYMBOL='CIN',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cinnamoncoin') 
+		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cinnamoncoin/') 
+		if platform.system() == 'Darwin' else os.path.expanduser('~/.cinnamoncoin'), 'cinnamoncoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='https://andarazoroflove.org/explorer/cinnamoncoin/block_crawler.php?block_hash=',
+        ADDRESS_EXPLORER_URL_PREFIX='http://kitexplorer.tk/address/',
+        TX_EXPLORER_URL_PREFIX='http://kitexplorer.tk/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.000001,
+    ),
 
 )
 for net_name, net in nets.iteritems():
