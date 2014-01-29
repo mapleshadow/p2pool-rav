@@ -791,7 +791,7 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
-    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow
+    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow 还在开发中
         P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
         P2P_PORT=19126,
         ADDRESS_VERSION=28, #pubkey_address
@@ -814,7 +814,120 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
-
+    chncoin=math.Object(#ADD chncoin | By Mapleshadow
+        P2P_PREFIX='fbc0b6db'.decode('hex'),
+        P2P_PORT=8106,
+        ADDRESS_VERSION=28,
+        RPC_PORT=8108,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'chncoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 88*100000000 >> (height + 1)//462528000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='CHN',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'chncoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/chncoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.chncoin'), 'chncoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/address/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+    ),
+    junkcoin=math.Object(
+        P2P_PREFIX='fbc0b6db'.decode('hex'),
+        P2P_PORT=9772,
+        ADDRESS_VERSION=16,
+        RPC_PORT=9771,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'junkcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 50*100000000 >> (height + 1)//1080000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s targetspacing
+        SYMBOL='JKC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Junkcoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Junkcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.junkcoin'), 'junkcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://d.evco.in/abe/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://d.evco.in/abe/address/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**12,
+    ),
+    bbqcoin=math.Object(
+        P2P_PREFIX='fde4d942'.decode('hex'),
+        P2P_PORT=19323,
+        ADDRESS_VERSION=85,
+        RPC_PORT=59332,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'bbqcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 42*100000000 >> (height + 1)//24000000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='BQC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'BBQCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/BBQCoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.bbqcoin'), 'bbqcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://bbq.cryptocoinexplorer.com/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://bbq.cryptocoinexplorer.com/address/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+    ),
+    mincoin=math.Object(
+        P2P_PREFIX='fbc0b6db'.decode('hex'),
+        P2P_PORT=9772,
+        ADDRESS_VERSION=50,
+        RPC_PORT=9771,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'mincoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 2*100000000 >> (height + 1)//105000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s targetspacing
+        SYMBOL='MNC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Mincoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Mincoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.mincoin'), 'mincoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://d.evco.in/abe/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://d.evco.in/abe/address/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**12,
+    ),
+    royalcoin=math.Object(
+        P2P_PREFIX='fbc0b6db'.decode('hex'),
+        P2P_PORT=18312,
+        ADDRESS_VERSION=60,
+        RPC_PORT=18311,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'royalcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 100*100000000 >> (height + 1)//1080000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s targetspacing
+        SYMBOL='RYC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Royalcoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Royalcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.royalcoin'), 'royalcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://d.evco.in/abe/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://d.evco.in/abe/address/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**12,
+    ),
+    franko=math.Object(
+        P2P_PREFIX='fbc0b6db'.decode('hex'),
+        P2P_PORT=9556,
+        ADDRESS_VERSION=35,
+        RPC_PORT=9556,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'frankoaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 1*10000000 >> (height + 1)//1080000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=30, # s targetspacing
+        SYMBOL='FRK',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'franko') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/franko/') if platform.system() == 'Darwin' else os.path.expanduser('~/.franko'), 'franko.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://d.evco.in/abe/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://d.evco.in/abe/address/',
+        SANE_TARGET_RANGE=(2**256//100000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+    ),
 )
 for net_name, net in nets.iteritems():
     net.NAME = net_name
