@@ -791,7 +791,7 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
-    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow 还在开发中
+    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow|hai zai kai fa zhong
         P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
         P2P_PORT=19126,
         ADDRESS_VERSION=28, #pubkey_address
@@ -814,7 +814,7 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
-    chncoin=math.Object(#ADD chncoin | By Mapleshadow|hai zai kai fa zhong
+    chncoin=math.Object(#ADD chncoin | By Mapleshadow
         P2P_PREFIX='fbc0b6db'.decode('hex'),
         P2P_PORT=8106,
         ADDRESS_VERSION=28,
