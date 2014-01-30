@@ -4,7 +4,16 @@ import platform
 from twisted.internet import defer
 
 from . import data
-from p2pool.util import math, pack
+from p2pool.util import math, pack, jsonrpc
+
+@defer.inlineCallbacks
+def check_genesis_block(bitcoind, genesis_block_hash):
+    try:
+        yield bitcoind.rpc_getblock(genesis_block_hash)
+    except jsonrpc.Error_for_code(-5):
+        defer.returnValue(False)
+    else:
+        defer.returnValue(True)
 
 nets = dict(
     bitcoin=math.Object(
@@ -13,7 +22,7 @@ nets = dict(
         ADDRESS_VERSION=0,
         RPC_PORT=8332,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'bitcoinaddress' in (yield bitcoind.rpc_help()) and
+            (yield check_genesis_block(bitcoind, '000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f')) and
             not (yield bitcoind.rpc_getinfo())['testnet']
         )),
         SUBSIDY_FUNC=lambda height: 50*100000000 >> (height + 1)//210000,
@@ -835,6 +844,29 @@ nets = dict(
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=1e8,
+    ),
+    leafcoin=math.Object(
+        P2P_PREFIX='aaaaaacc'.decode('hex'), #pchmessagestart
+        P2P_PORT=22813,
+        ADDRESS_VERSION=95, #pubkey_address
+        RPC_PORT=22812,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'leafcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 100000*100000000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='LEAF',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'LeafCoin') 
+		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Leafcoin/') 
+		if platform.system() == 'Darwin' else os.path.expanduser('~/.leafcoin'), 'leafcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://cryptexplorer.com/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://cryptexplorer.com/address/',
+        TX_EXPLORER_URL_PREFIX='http://cryptexplorer.com/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.03e8,
     ),
 
 )
