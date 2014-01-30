@@ -324,9 +324,9 @@ nets = dict(
     ),
     dogecoin=math.Object(
         PARENT=networks.nets['dogecoin'],
-        SHARE_PERIOD=10, # seconds target spacing|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
-        CHAIN_LENGTH=24*60*60//10, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
-        REAL_CHAIN_LENGTH=24*60*60//10, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        SHARE_PERIOD=15, # seconds target spacing|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        CHAIN_LENGTH=12*60*60//15, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        REAL_CHAIN_LENGTH=12*60*60//15, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
         TARGET_LOOKBEHIND=20, # shares coinbase maturity
         SPREAD=10, # blocks
         IDENTIFIER='D0D1D2D3B2F68CD9'.decode('hex'),
