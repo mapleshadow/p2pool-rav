@@ -717,6 +717,24 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+    infinitecoin=math.Object(
+        PARENT=networks.nets['infinitecoin'],
+        SHARE_PERIOD=10, # seconds target spacing--
+        CHAIN_LENGTH=24*60*60//10, # shares--
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares--
+        TARGET_LOOKBEHIND=20, # shares coinbase maturity 
+        SPREAD=60, # blocks---
+        IDENTIFIER='fc656168639f686e'.decode('hex'),
+        PREFIX='fe636f818e6c666a'.decode('hex'),
+        P2P_PORT=10317,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=9068,
+        BOOTSTRAP_ADDRS='p2pool.freeyy.me'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
     leafcoin=math.Object(
         PARENT=networks.nets['leafcoin'],
         SHARE_PERIOD=10, # seconds target spacing
