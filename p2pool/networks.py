@@ -735,6 +735,24 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+    earthcoin=math.Object(
+        PARENT=networks.nets['earthcoin'],
+        SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=3*60*60//5, # shares
+        REAL_CHAIN_LENGTH=3*60*60//5, # shares
+        TARGET_LOOKBEHIND=120, # shares
+        SPREAD=30, # blocks
+        IDENTIFIER='e137d5b8c6923410'.decode('hex'),
+        PREFIX='7218c1a53ef629b0'.decode('hex'),
+        P2P_PORT=9792,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True,
+        WORKER_PORT=19330,
+        BOOTSTRAP_ADDRS=''.split(' '),
+        ANNOUNCE_CHANNEL='#spool',
+        VERSION_CHECK=lambda v: True,
+    ),
     leafcoin=math.Object(
         PARENT=networks.nets['leafcoin'],
         SHARE_PERIOD=10, # seconds target spacing

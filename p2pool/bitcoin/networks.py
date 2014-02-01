@@ -868,6 +868,30 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
+    earthcoin=math.Object(
+        P2P_PREFIX='c0dbf1fd'.decode('hex'),
+        P2P_PORT=15677,
+        ADDRESS_VERSION=93,
+        RPC_PORT=15678,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'earthcoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 10000*100000000 >> (height + 1)//525600,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # s
+        SYMBOL='EAC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'earthcoin') 
+		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/earthcoin/') 
+		if platform.system() == 'Darwin' else os.path.expanduser('~/.earthcoin'), 'earthcoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info/address/',
+        TX_EXPLORER_URL_PREFIX='http://earthchain.info/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=1e8,
+    ),
+
     leafcoin=math.Object(
         P2P_PREFIX='aaaaaacc'.decode('hex'), #pchmessagestart
         P2P_PORT=22813,
