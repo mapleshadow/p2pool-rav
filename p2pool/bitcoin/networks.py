@@ -851,7 +851,7 @@ nets = dict(
         ADDRESS_VERSION=66, #pubkey_address  0xfb, 0xc0, 0xb6, 0xdb
         RPC_PORT=9322,
         RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'leafcoinaddress' in (yield bitcoind.rpc_help()) and
+            'infinitecoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
         )),
         SUBSIDY_FUNC=lambda height: 524288*100000000,
