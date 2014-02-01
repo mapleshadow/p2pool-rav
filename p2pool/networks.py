@@ -735,7 +735,7 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
-    earthcoin=math.Object(
+    earthcoin=math.Object(# By Mapleshadow v1
         PARENT=networks.nets['earthcoin'],
         SHARE_PERIOD=10, # seconds
         CHAIN_LENGTH=3*60*60//5, # shares

@@ -868,7 +868,7 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
-    earthcoin=math.Object(
+    earthcoin=math.Object(# By Mapleshadow v1
         P2P_PREFIX='c0dbf1fd'.decode('hex'),
         P2P_PORT=15677,
         ADDRESS_VERSION=93,
@@ -891,7 +891,6 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=1e8,
     ),
-
     leafcoin=math.Object(
         P2P_PREFIX='aaaaaacc'.decode('hex'), #pchmessagestart
         P2P_PORT=22813,
