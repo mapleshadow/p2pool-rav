@@ -735,7 +735,8 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
-    earthcoin=math.Object(# By Mapleshadow v1
+# By Mapleshadow v1
+    earthcoin=math.Object(
         PARENT=networks.nets['earthcoin'],
         SHARE_PERIOD=10, # seconds
         CHAIN_LENGTH=3*60*60//5, # shares
@@ -744,10 +745,12 @@ nets = dict(
         SPREAD=30, # blocks
         IDENTIFIER='e137d5b8c6923410'.decode('hex'),
         PREFIX='7218c1a53ef629b0'.decode('hex'),
-        P2P_PORT=9792,
+        P2P_PORT=9338,
+#        P2P_PORT=9792,#Errors, they did not know how to solve
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
+#        PERSIST=True,#Errors, they did not know how to solve
         WORKER_PORT=19330,
         BOOTSTRAP_ADDRS=''.split(' '),
         ANNOUNCE_CHANNEL='#spool',

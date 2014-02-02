@@ -868,7 +868,8 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
-    earthcoin=math.Object(# By Mapleshadow v1
+# By Mapleshadow v1
+    earthcoin=math.Object(
         P2P_PREFIX='c0dbf1fd'.decode('hex'),
         P2P_PORT=15677,
         ADDRESS_VERSION=93,
