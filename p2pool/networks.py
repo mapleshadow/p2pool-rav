@@ -242,7 +242,7 @@ nets = dict(
         P2P_PORT=8346,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
         WORKER_PORT=8345,
         BOOTSTRAP_ADDRS='p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net doge.dtdns.net pool.hostv.pl p2pool.org p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
@@ -786,30 +786,30 @@ nets = dict(
         P2P_PORT=8443,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
         WORKER_PORT=9443,
         BOOTSTRAP_ADDRS='p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net doge.dtdns.net pool.hostv.pl p2pool.org p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org redd.freily.com'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
-    vertcoin=math.Object(
-        PARENT=networks.nets['vertcoin'],
-        SHARE_PERIOD=15, # seconds
-        CHAIN_LENGTH=24*60*60//10, # shares
-        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-        TARGET_LOOKBEHIND=200, # shares
-        SPREAD=3, # blocks
-        IDENTIFIER='b58492a125f1d8ae'.decode('hex'),
-        PREFIX='fdd6f9c5005b2deb'.decode('hex'),
-        P2P_PORT=9346,
-        MIN_TARGET=0,
-        MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
-        WORKER_PORT=9171,
-        BOOTSTRAP_ADDRS='178.63.15.130 P2POOL.ETYD.ORG'.split(' '),
-        ANNOUNCE_CHANNEL='#p2pool-vtc',
-        VERSION_CHECK=lambda v: True,
-    ),
+#    vertcoin=math.Object(
+#        PARENT=networks.nets['vertcoin'],
+#        SHARE_PERIOD=15, # seconds
+#        CHAIN_LENGTH=24*60*60//10, # shares
+#        REAL_CHAIN_LENGTH=24*60*60//10, # shares
+#        TARGET_LOOKBEHIND=200, # shares
+#        SPREAD=3, # blocks
+#        IDENTIFIER='b58492a125f1d8ae'.decode('hex'),
+#        PREFIX='fdd6f9c5005b2deb'.decode('hex'),
+#        P2P_PORT=9346,
+#        MIN_TARGET=0,
+#        MAX_TARGET=2**256//2**20 - 1,
+#        PERSIST=True,
+#        WORKER_PORT=9171,
+#        BOOTSTRAP_ADDRS='178.63.15.130 P2POOL.ETYD.ORG'.split(' '),
+#        ANNOUNCE_CHANNEL='#p2pool-vtc',
+#        VERSION_CHECK=lambda v: True,
+#    ),
 
 )
 for net_name, net in nets.iteritems():
