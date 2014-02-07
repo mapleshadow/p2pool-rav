@@ -861,9 +861,9 @@ nets = dict(
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Infinitecoin') 
 		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Infinitecoin/') 
 		if platform.system() == 'Darwin' else os.path.expanduser('~/.infinitecoin'), 'infinitecoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://p2pool.freeyy.me:2758/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://p2pool.freeyy.me:2758/address/',
-        TX_EXPLORER_URL_PREFIX='http://p2pool.freeyy.me:2758/tx/',
+        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info:2758/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info:2758/address/',
+        TX_EXPLORER_URL_PREFIX='http://earthchain.info:2758/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
