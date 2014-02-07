@@ -731,7 +731,7 @@ nets = dict(
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=True,
         WORKER_PORT=9068,
-        BOOTSTRAP_ADDRS='p2pool.freeyy.me'.split(' '),
+        BOOTSTRAP_ADDRS=''.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
