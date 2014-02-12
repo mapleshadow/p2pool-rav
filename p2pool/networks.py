@@ -828,6 +828,24 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+    digibyte=math.Object(#TEST
+        PARENT=networks.nets['digibyte'],
+        SHARE_PERIOD=15, # seconds
+        CHAIN_LENGTH=24*60*60//10, # shares
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares
+        TARGET_LOOKBEHIND=200, # shares
+        SPREAD=30, # blocks
+        IDENTIFIER='400690cf35352b24'.decode('hex'),
+        PREFIX='fa1fb851e8c0a924'.decode('hex'),
+        P2P_PORT=8024,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=False,
+        WORKER_PORT=9024,
+        BOOTSTRAP_ADDRS='p2p.mine.bz'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
 
 )
 for net_name, net in nets.iteritems():
