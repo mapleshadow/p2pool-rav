@@ -745,8 +745,8 @@ nets = dict(
         SPREAD=30, # blocks 600/60=10   3*10=30;
         IDENTIFIER='e137d5b8c6923410'.decode('hex'),
         PREFIX='7218c1a53ef629b0'.decode('hex'),
-        P2P_PORT=9338,
-#        P2P_PORT=9792,#Errors, they did not know how to solve
+#        P2P_PORT=9338,
+        P2P_PORT=29330,#Errors, they did not know how to solve
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
