@@ -742,7 +742,7 @@ nets = dict(
         CHAIN_LENGTH=3*60*60//5, # shares
         REAL_CHAIN_LENGTH=3*60*60//5, # shares
         TARGET_LOOKBEHIND=120, # shares
-        SPREAD=30, # blocks
+        SPREAD=30, # blocks 600/60=10   3*10=30;
         IDENTIFIER='e137d5b8c6923410'.decode('hex'),
         PREFIX='7218c1a53ef629b0'.decode('hex'),
         P2P_PORT=9338,
@@ -753,7 +753,8 @@ nets = dict(
 #        PERSIST=True,#Errors, they did not know how to solve
         WORKER_PORT=19330,
         BOOTSTRAP_ADDRS=''.split(' '),
-        ANNOUNCE_CHANNEL='#spool',
+#        ANNOUNCE_CHANNEL='#spool',
+        ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
     leafcoin=math.Object(
