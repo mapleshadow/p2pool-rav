@@ -245,10 +245,10 @@
     </div>
 <div><p>Typical cgminer config for GPU scrypt coin: "cgminer --scrypt -Q 0 -o pool.address:port -u PayoutAddress -p xxx --restOfCgminerOptions"</p></div>
 	<ul class="nav nav-tabs" id="myTab">
-	  	<li class="active"><a href="#stats" data-toggle="tab"><i class="icon-user"></i>&nbsp;Pool stats</a></li>
-	  	<li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i>&nbsp;Share explorer</a></li>
-	  	<li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i>&nbsp;Last blocks</a></li>
-		<li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i>&nbsp;Payout</a></li>
+	  	<li class="active"><a href="#stats" data-toggle="tab"><i class="icon-user"></i>&nbsp;矿池概况</a></li>
+	  	<li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i>&nbsp;Share 浏览</a></li>
+	  	<li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i>&nbsp;当前块概况</a></li>
+		<li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i>&nbsp;钱包地址概况</a></li>
 	</ul>
 	<div class="tab-content">
 	  	<div class="tab-pane active" id="stats">
@@ -288,20 +288,20 @@
 							</tr>
 							<tr>
 							<tr>
-							  <td><h5>Pool rate</h5></td>
+							  <td><h5>矿池算力</h5></td>
 							  <td><span id="pool_rate" class="label label-inverse"></span> (<span id="pool_stale"></span> DOA+orphan)</td>
 							  <td></td>
-							  <td><h5>Share difficulty</h5></td>
+							  <td><h5>Share 难度</h5></td>
 							  <td><span id="difficulty" class="label label-inverse"></span></td>
 							</tr>
 							<tr>
-							  <td><h5>Node uptime</h5></td>
+							  <td><h5>节点正常运行时间</h5></td>
 							  <td><span id="uptime_days" class="label label-inverse"></span> (<span id="uptime_hours"></span> hours)</td>
 							  <td></td>
 							  <td><h5>Peers</h5></td>
 							  <td><span id="peers_out"></span> out, <span id="peers_in"></span> in</td>
 							</tr>
-							  <td><h5>Current block value</h5></td>
+							  <td><h5>当前块币数</h5></td>
 							  <td><span id="block_value" class="label label-inverse"></span> <span class="symbol"></span></td>
 							  <td></td>
 							  <td><h5>Expected time to block</h5></td>
@@ -313,11 +313,11 @@
 				<br/>
 				<div style="width: 1340px">
 					<div class="well" style="width:600px; float: left">
-						<h4>Local Shares</h4>
+						<h4>本地 Shares</h4>
 						<div id="ShareChart" width="450" height="450"></div>
 					</div>
 					<div class="well" style="width:600px; float: right">
-						<h4>Global pool speed</h4>
+						<h4>全球池速</h4>
 						<div id="SpeedChart" width="450" height="450"></div>
 					</div>
 				</div>
