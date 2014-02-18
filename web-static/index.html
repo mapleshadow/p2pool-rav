@@ -237,13 +237,13 @@
             <ul class="nav">
 			  <li class="active"><a href="index.html">统计数据</a></li>
 			  <li><a href="graphs.html">图形预览</a></li>
-              <li><a href="https://github.com/Rav3nPL/p2pool-rav">联系</a></li>
+              <li><a href="https://github.com/mapleshadow/p2pool-rav">联系</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-<div><p>Typical cgminer config for GPU scrypt coin: "cgminer --scrypt -Q 0 -o pool.address:port -u PayoutAddress -p xxx --restOfCgminerOptions"</p></div>
+<div><p>请使用 cgminer 配置文件用于运行 GPU scrypt 币挖矿: "cgminer --scrypt -Q 0 -o p2pool.freeyy.me:币端口号 -u 币钱包地址 -p x --restOfCgminerOptions"</p></div>
 	<ul class="nav nav-tabs" id="myTab">
 	  	<li class="active"><a href="#stats" data-toggle="tab"><i class="icon-user"></i>&nbsp;矿池概况</a></li>
 	  	<li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i>&nbsp;Share 浏览</a></li>
@@ -256,14 +256,14 @@
 				<div class="well" style="width:1000px">
 				<div class="navbar" style="width: 560px;">
 				  <div class="navbar-inner">
-				    <a class="brand" href="javascript:void(0)">Scale</a>
+				    <a class="brand" href="javascript:void(0)">比例</a>
 				    <ul class="nav" id="scale_menu">
-				      <li id="scale1"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">Hour</a></li>
-				      <li id="scale2" class="active"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">Day</a></li>
-				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
-				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
-				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
-				      <li><input type="checkbox" name="autorefresh" id="autorefresh" /><label for="autorefresh">Auto-refresh</label></li>
+				      <li id="scale1"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">小时</a></li>
+				      <li id="scale2" class="active"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">天</a></li>
+				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">周</a></li>
+				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">月</a></li>
+				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">年</a></li>
+				      <li><input type="checkbox" name="autorefresh" id="autorefresh" /><label for="autorefresh">自动刷新</label></li>
 				    </ul>
 				  </div>
 				</div>
@@ -273,15 +273,15 @@
 					<table class="table table-striped" style="width: 1300px">
 						<tbody>
 							<tr>
-							  <td><h5>Local rate</h5></td>
+							  <td><h5>本地算力</h5></td>
 							  <td><span id="local_rate" class="label"></span> (<span id="local_doa"></span> DOA)</td>
 							  <td></td>
-							  <td><h5>Expected time to share</h5></td>
-							  <td><span id="time_to_share" class="label"></span> (<span id="time_to_share_minute"></span> minutes)</td>
+							  <td><h5>预计时间分享</h5></td>
+							  <td><span id="time_to_share" class="label"></span> (<span id="time_to_share_minute"></span> 分钟)</td>
 							</tr>
 							<tr>
-							  <td><h5>Shares</h5></td>
-							  <td><span id="shares_total" class="label"></span> total (<span id="shares_orphan" class="label label-warning"></span> orphaned, <span id="shares_dead" class="label label-warning"></span> dead) Efficiency: <span class="label label-info" id="efficiency"></span></td>
+							  <td><h5>股份</h5></td>
+							  <td><span id="shares_total" class="label"></span> 总计 (<span id="shares_orphan" class="label label-warning"></span> 孤立, <span id="shares_dead" class="label label-warning"></span> dead) 效率: <span class="label label-info" id="efficiency"></span></td>
 							  <td></td>
 							  <td><h5>Payout if a block were found NOW</h5></td>
 							  <td><span id="payout_amount" class="label"></span> <span class="symbol"></span></td>
@@ -289,7 +289,7 @@
 							<tr>
 							<tr>
 							  <td><h5>矿池算力</h5></td>
-							  <td><span id="pool_rate" class="label label-inverse"></span> (<span id="pool_stale"></span> DOA+orphan)</td>
+							  <td><span id="pool_rate" class="label label-inverse"></span> (<span id="pool_stale"></span> DOA+孤立)</td>
 							  <td></td>
 							  <td><h5>Share 难度</h5></td>
 							  <td><span id="difficulty" class="label label-inverse"></span></td>
@@ -298,13 +298,13 @@
 							  <td><h5>节点正常运行时间</h5></td>
 							  <td><span id="uptime_days" class="label label-inverse"></span> (<span id="uptime_hours"></span> hours)</td>
 							  <td></td>
-							  <td><h5>Peers</h5></td>
+							  <td><h5>同行</h5></td>
 							  <td><span id="peers_out"></span> out, <span id="peers_in"></span> in</td>
 							</tr>
 							  <td><h5>当前块币数</h5></td>
 							  <td><span id="block_value" class="label label-inverse"></span> <span class="symbol"></span></td>
 							  <td></td>
-							  <td><h5>Expected time to block</h5></td>
+							  <td><h5>预计块时间</h5></td>
 							  <td><span id="time_to_block" class="label"></span></td>
 							</tr>
 						</tbody>
@@ -313,7 +313,7 @@
 				<br/>
 				<div style="width: 1340px">
 					<div class="well" style="width:600px; float: left">
-						<h4>本地 Shares</h4>
+						<h4>本地股份</h4>
 						<div id="ShareChart" width="450" height="450"></div>
 					</div>
 					<div class="well" style="width:600px; float: right">
@@ -333,7 +333,7 @@
 		</div>
 	  	<div class="tab-pane" id="lastblocks">
 			<table id="blocks" class="table table-striped table-hover">
-			    <tr><th>ID</th><th>Time</th><th>Hash / Explorer link</th><th>Share</th></tr>
+			    <tr><th>ID</th><th>时间</th><th>Hash / 浏览链接</th><th>Share</th></tr>
 			</table>
 		</div>
 	  	<div class="tab-pane" id="mainnodepayout">

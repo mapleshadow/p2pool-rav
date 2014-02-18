@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
@@ -54,12 +54,12 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="brand" href="/">Rav3n_pl P2Pool pool (<span class="symbol upper"></span>) node</a>
+			  <a class="brand" href="/">枫影私有 P2Pool 矿池 (<span class="symbol upper"></span>) 概况</a>
 			  <div class="nav-collapse collapse">
 				<ul class="nav">
-				  <li><a href="index.html">Stats</a></li>
-				  <li class="active"><a href="graphs.html">Graph</a></li>
-				  <li><a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">Contact</a></li>
+				  <li><a href="index.html">统计数据</a></li>
+				  <li class="active"><a href="graphs.html">图形预览</a></li>
+				  <li><a href="https://github.com/mapleshadow/p2pool-rav">联系</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
 			</div>
@@ -68,13 +68,13 @@
         <center>
 			<div class="navbar" style="width: 440px;">
 			  <div class="navbar-inner">
-				<a class="brand" href="javascript:void(0)">Scale</a>
+				<a class="brand" href="javascript:void(0)">比例</a>
 				<ul class="nav" id="scale_menu">
-				  <li id="scaleHour"class="active"><a href="javascript:ChangeCurrentPeriod('Hour', 'scaleHour');">Hour</a></li>
-				  <li id="scaleDay"><a href="javascript:ChangeCurrentPeriod('Day', 'scaleDay');">Day</a></li>
-				  <li id="scaleWeek"><a href="javascript:ChangeCurrentPeriod('Week', 'scaleWeek');">Week</a></li>
-				  <li id="scaleMonth"><a href="javascript:ChangeCurrentPeriod('Month', 'scaleMonth');">Month</a></li>
-				  <li id="scaleYear"><a href="javascript:ChangeCurrentPeriod('Year', 'scaleYear');">Year</a></li>
+				  <li id="scaleHour"class="active"><a href="javascript:ChangeCurrentPeriod('Hour', 'scaleHour');">小时</a></li>
+				  <li id="scaleDay"><a href="javascript:ChangeCurrentPeriod('Day', 'scaleDay');">天</a></li>
+				  <li id="scaleWeek"><a href="javascript:ChangeCurrentPeriod('Week', 'scaleWeek');">周</a></li>
+				  <li id="scaleMonth"><a href="javascript:ChangeCurrentPeriod('Month', 'scaleMonth');">月</a></li>
+				  <li id="scaleYear"><a href="javascript:ChangeCurrentPeriod('Year', 'scaleYear');">年</a></li>
 				</ul>
 			  </div>
 			</div>
@@ -88,27 +88,27 @@
 				d3.selectAll('.symbol').text(currency_info.symbol);
 			});
 		</script>
-        <p style="display: none">Periods: <span id="period_chooser"></span> Current: <span id="period_current"></span></p>
+        <p style="display: none">周期: <span id="period_chooser"></span> 当前: <span id="period_current"></span></p>
         
         <div id="warnings"></div>
 		<center>
 			<div class="well" style="width:1000px"> 
-				<h2>Local rate</h2>
+				<h2>本地算力</h2>
 				<svg id="local"></svg>
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Current payout to default address</h2>
+				<h2>目前支付到默认地址</h2>
 				<svg id="payout"></svg>
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Pool rate</h2>
+				<h2>矿池算力</h2>
 				<svg id="pool"></svg>
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Miners</h2>
+				<h2>矿工</h2>
 				<div id="miners"></div>
 			</div>
 			<br/>
@@ -118,7 +118,7 @@
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Traffic rate</h2>
+				<h2>流量速率</h2>
 				<svg id="traffic_rate"></svg>
 			</div>
 			<br/>
@@ -128,7 +128,7 @@
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Memory Usage</h2>
+				<h2>已使用内存情况</h2>
 				<svg id="memory_usage"></svg>
 			</div>
 		</center>
