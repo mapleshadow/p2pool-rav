@@ -908,9 +908,9 @@ nets = dict(
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'LeafCoin') 
 		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Leafcoin/') 
 		if platform.system() == 'Darwin' else os.path.expanduser('~/.leafcoin'), 'leafcoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://explorer.leafco.in/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://explorer.leafco.in/address/',
-        TX_EXPLORER_URL_PREFIX='http://explorer.leafco.in/tx/',
+        BLOCK_EXPLORER_URL_PREFIX='http://explorer2.leafco.in/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://explorer2.leafco.in/address/',
+        TX_EXPLORER_URL_PREFIX='http://explorer2.leafco.in/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
@@ -951,9 +951,7 @@ nets = dict(
         POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
         BLOCK_PERIOD=60, # s
         SYMBOL='RDD',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Reddcoin') 
-		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Reddcoin/') 
-		if platform.system() == 'Darwin' else os.path.expanduser('~/.reddcoin'), 'reddcoin.conf'),
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Reddcoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Reddcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.reddcoin'), 'reddcoin.conf'),
         BLOCK_EXPLORER_URL_PREFIX='http://altexplorer.net/block/',
         ADDRESS_EXPLORER_URL_PREFIX='http://altexplorer.net/address/',
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
@@ -1069,6 +1067,7 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
+
 
 )
 for net_name, net in nets.iteritems():
