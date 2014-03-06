@@ -598,7 +598,7 @@ nets = dict(
         BLOCK_PERIOD=90, # s
         SYMBOL='COYE',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'coinyecoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/coinyecoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.coinyecoin'), 'coinyecoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://coinyechain.info/block/',
+        BLOCK_EXPLORER_URL_PREFIX='http://p2pool.freeyy.me:27/block/',
         ADDRESS_EXPLORER_URL_PREFIX='http://coinyechain.info/address/',
         TX_EXPLORER_URL_PREFIX='http://coinyechain.info/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
@@ -800,74 +800,74 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.000001,
     ),
-    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow|hai zai kai fa zhong
-        P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
-        P2P_PORT=19126,
-        ADDRESS_VERSION=28, #pubkey_address
-        RPC_PORT=19125,
-        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'cinnamoncoinaddress' in (yield bitcoind.rpc_help()) and
-            not (yield bitcoind.rpc_getinfo())['testnet']
-        )),
-	SUBSIDY_FUNC=lambda height: 64*100000000,
-        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=20, # s 
-        SYMBOL='CIN',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cinnamoncoin') 
-		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cinnamoncoin/') 
-		if platform.system() == 'Darwin' else os.path.expanduser('~/.cinnamoncoin'), 'cinnamoncoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='https://andarazoroflove.org/explorer/cinnamoncoin/block_crawler.php?block_hash=',
-        ADDRESS_EXPLORER_URL_PREFIX='http://kitexplorer.tk/address/',
-        TX_EXPLORER_URL_PREFIX='http://kitexplorer.tk/tx/',
-        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.000001,
-    ),
-    chncoin=math.Object(#ADD chncoin | By Mapleshadow
-        P2P_PREFIX='fbc0b6db'.decode('hex'),
-        P2P_PORT=8106,
-        ADDRESS_VERSION=28,
-        RPC_PORT=8108,
-        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'chncoinaddress' in (yield bitcoind.rpc_help()) and
-            not (yield bitcoind.rpc_getinfo())['testnet']
-        )),
-        SUBSIDY_FUNC=lambda height: 88*100000000 >> (height + 1)//462528000,
-        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=60, # s
-        SYMBOL='CNC',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'chncoin') 
-		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/chncoin/') 
-		if platform.system() == 'Darwin' else os.path.expanduser('~/.chncoin'), 'chncoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/address/',
-        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
-    ),
-    infinitecoin=math.Object(
-        P2P_PREFIX='fbc0b6db'.decode('hex'), #pchmessagestart
-        P2P_PORT=9321,
-        ADDRESS_VERSION=66, #pubkey_address  0xfb, 0xc0, 0xb6, 0xdb
-        RPC_PORT=9322,
-        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'infinitecoinaddress' in (yield bitcoind.rpc_help()) and
-            not (yield bitcoind.rpc_getinfo())['testnet']
-        )),
-        SUBSIDY_FUNC=lambda height: 524288*100000000,
-        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=30, # s
-        SYMBOL='IFC',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Infinitecoin') 
-		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Infinitecoin/') 
-		if platform.system() == 'Darwin' else os.path.expanduser('~/.infinitecoin'), 'infinitecoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info:2758/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info:2758/address/',
-        TX_EXPLORER_URL_PREFIX='http://earthchain.info:2758/tx/',
-        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.03e8,
-    ),
+#    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow|hai zai kai fa zhong
+#        P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
+#        P2P_PORT=19126,
+#        ADDRESS_VERSION=28, #pubkey_address
+#        RPC_PORT=19125,
+#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+#            'cinnamoncoinaddress' in (yield bitcoind.rpc_help()) and
+#            not (yield bitcoind.rpc_getinfo())['testnet']
+#        )),
+#	SUBSIDY_FUNC=lambda height: 64*100000000,
+#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+#        BLOCK_PERIOD=20, # s 
+#        SYMBOL='CIN',
+#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cinnamoncoin') 
+#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cinnamoncoin/') 
+#		if platform.system() == 'Darwin' else os.path.expanduser('~/.cinnamoncoin'), 'cinnamoncoin.conf'),
+#        BLOCK_EXPLORER_URL_PREFIX='https://andarazoroflove.org/explorer/cinnamoncoin/block_crawler.php?block_hash=',
+#        ADDRESS_EXPLORER_URL_PREFIX='http://kitexplorer.tk/address/',
+#        TX_EXPLORER_URL_PREFIX='http://kitexplorer.tk/tx/',
+#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+#        DUMB_SCRYPT_DIFF=2**16,
+#        DUST_THRESHOLD=0.000001,
+#    ),
+#    chncoin=math.Object(#ADD chncoin | By Mapleshadow
+#        P2P_PREFIX='fbc0b6db'.decode('hex'),
+#        P2P_PORT=8106,
+#        ADDRESS_VERSION=28,
+#        RPC_PORT=8108,
+#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+#            'chncoinaddress' in (yield bitcoind.rpc_help()) and
+#            not (yield bitcoind.rpc_getinfo())['testnet']
+#        )),
+#        SUBSIDY_FUNC=lambda height: 88*100000000 >> (height + 1)//462528000,
+#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+#        BLOCK_PERIOD=60, # s
+#        SYMBOL='CNC',
+#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'chncoin')
+#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/chncoin/') 
+#		if platform.system() == 'Darwin' else os.path.expanduser('~/.chncoin'), 'chncoin.conf'),
+#        BLOCK_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/block/',
+#        ADDRESS_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/address/',
+#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+#        DUMB_SCRYPT_DIFF=2**16,
+#        DUST_THRESHOLD=1e8,
+#    ),
+#    infinitecoin=math.Object(
+#        P2P_PREFIX='fbc0b6db'.decode('hex'), #pchmessagestart
+#        P2P_PORT=9321,
+#        ADDRESS_VERSION=66, #pubkey_address  0xfb, 0xc0, 0xb6, 0xdb
+#        RPC_PORT=9322,
+#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+#            'infinitecoinaddress' in (yield bitcoind.rpc_help()) and
+#            not (yield bitcoind.rpc_getinfo())['testnet']
+#        )),
+#        SUBSIDY_FUNC=lambda height: 524288*100000000,
+#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+#        BLOCK_PERIOD=30, # s
+#        SYMBOL='IFC',
+#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Infinitecoin') 
+#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Infinitecoin/') 
+#		if platform.system() == 'Darwin' else os.path.expanduser('~/.infinitecoin'), 'infinitecoin.conf'),
+#        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info:2758/block/',
+#        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info:2758/address/',
+#        TX_EXPLORER_URL_PREFIX='http://earthchain.info:2758/tx/',
+#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+#        DUMB_SCRYPT_DIFF=2**16,
+#        DUST_THRESHOLD=0.03e8,
+#    ),
 # By Mapleshadow v1
     earthcoin=math.Object(
         P2P_PREFIX='c0dbf1fd'.decode('hex'),
@@ -1090,7 +1090,29 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
-
+    Coin=math.Object(
+        P2P_PREFIX='a9c5bdd1'.decode('hex'), #pchmessagestart
+        P2P_PORT=24057,
+        ADDRESS_VERSION=28, #pubkey_address
+        RPC_PORT=24055,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'Coinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 0*1200000000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # seconds
+        SYMBOL='COIN',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Coin') 
+		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Coin/') 
+		if platform.system() == 'Darwin' else os.path.expanduser('~/.Coin'), 'Coin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://explorer.coin-project.org/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://explorer.coin-project.org/address/',
+        TX_EXPLORER_URL_PREFIX='http://explorer.coin-project.org/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.03e8,
+    ),
 
 )
 for net_name, net in nets.iteritems():
