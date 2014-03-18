@@ -210,6 +210,7 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+
     casinocoin=math.Object(
         PARENT=networks.nets['casinocoin'],
         SHARE_PERIOD=5, # seconds target spacing
@@ -228,15 +229,16 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+
     doubloons=math.Object(
         PARENT=networks.nets['doubloons'],
-        SHARE_PERIOD=15, # seconds target spacing
-        CHAIN_LENGTH=24*60*60//10, # shares
-        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-        TARGET_LOOKBEHIND=200, # shares coinbase maturity
+        SHARE_PERIOD=5, # seconds target spacing
+        CHAIN_LENGTH=12*60*60//5, # shares
+        REAL_CHAIN_LENGTH=12*60*60//5, # shares
+        TARGET_LOOKBEHIND=20, # blocks
         SPREAD=30, # blocks
-        IDENTIFIER='be43F6b9c6924210'.decode('hex'),
-        PREFIX='b587199ba6d7729a'.decode('hex'),
+        IDENTIFIER='fe43a6b9f6924a10'.decode('hex'),
+        PREFIX='fe8f19aba6d7729a'.decode('hex'),
         P2P_PORT=8346,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
@@ -300,6 +302,7 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
+
     unobtanium=math.Object(
         PARENT=networks.nets['unobtanium'],
         SHARE_PERIOD=30, # seconds
@@ -809,24 +812,6 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
     ),
-#    vertcoin=math.Object(
-#        PARENT=networks.nets['vertcoin'],
-#        SHARE_PERIOD=15, # seconds
-#        CHAIN_LENGTH=24*60*60//10, # shares
-#        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-#        TARGET_LOOKBEHIND=200, # shares
-#        SPREAD=3, # blocks
-#        IDENTIFIER='b58492a125f1d8ae'.decode('hex'),
-#        PREFIX='fdd6f9c5005b2deb'.decode('hex'),
-#        P2P_PORT=9346,
-#        MIN_TARGET=0,
-#        MAX_TARGET=2**256//2**20 - 1,
-#        PERSIST=True,
-#        WORKER_PORT=9171,
-#        BOOTSTRAP_ADDRS='178.63.15.130 P2POOL.ETYD.ORG'.split(' '),
-#        ANNOUNCE_CHANNEL='#p2pool-vtc',
-#        VERSION_CHECK=lambda v: True,
-#    ),
     tigercoin=math.Object(
         PARENT=networks.nets['tigercoin'],
         SHARE_PERIOD=5, # seconds
@@ -934,6 +919,25 @@ nets = dict(
         BOOTSTRAP_ADDRS='p2pool-us.coin-project.org p2pool-eu.coin-project.org p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net doge.dtdns.net pool.hostv.pl p2pool.org p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org taken.pl polishcoin.info pcc.paybtc.pl'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
+    ),
+    fckbankscoin=math.Object(
+        PARENT=networks.nets['fckbankscoin'],
+        SHARE_PERIOD=10, # seconds #How often should P2Pool generate a new share (rule of thumb: 1/5 - 1/10 of the block period)
+        CHAIN_LENGTH=24*60*60//10, # shares
+        REAL_CHAIN_LENGTH=24*60*60//10, # shares #CHAIN_LENGTH & REAL_CHAIN_LENGTH are set up to allow for 3 Hour PPLNS.
+        TARGET_LOOKBEHIND=30, # is set to 30 (shares) giving a 300 second (5min) difficulty adjustment.
+        SPREAD=30, # blocks #SPREAD=30 block every 60 seconds 600/60=10 10x3=30 because bitcoin's SPREAD=3 block every 600 seconds and litecoin'sSPREAD=12 block every 150 seconds 600/150=4 4x3=12
+        IDENTIFIER='41a7d0b44d0b3d36'.decode('hex'), #some random s-it (I think its used to identify others p2pool's mining this coin)
+        PREFIX='9117d0b44d0538cf'.decode('hex'), #IDENTIFIER & PREFIX: P2Pool will only sync with other nodes who have Identifier and Prefix matching yours (and using same p2p port).. if any of the above values change, a new identifier & prefix need to be created in order to prevent problems.
+        P2P_PORT=11779, #port that p2pool is comunicating on with other p2pools
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=True, #this value tells the p2pool if it should mine solo or connect to other p2pools.
+        WORKER_PORT=19334,
+        BOOTSTRAP_ADDRS='hashattack.com b1czu.sytes.net 37.139.19.246'.split(' '), #here we need to add working p2pool fck nodes to allow others connecting
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: 10000 <= v,
+        VERSION_WARNING=lambda v: 'Upgrade FCKbankscoin to >=1.0.0.0!' if v < 10000 else None,
     ),
 
 )

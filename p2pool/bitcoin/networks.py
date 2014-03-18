@@ -640,9 +640,9 @@ nets = dict(
         BLOCK_PERIOD=60, # s
         SYMBOL='USDe',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'usde') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/usde/') if platform.system() == 'Darwin' else os.path.expanduser('~/.usde'), 'usde.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://usdeexplorer.com/block/', #dummy
-        ADDRESS_EXPLORER_URL_PREFIX='http://usdeexplorer.com/address/',
-        TX_EXPLORER_URL_PREFIX='http://usdeexplorer.com/tx/',
+        BLOCK_EXPLORER_URL_PREFIX='http://altexplorer.net/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='https://altexplorer.net/address/',
+        TX_EXPLORER_URL_PREFIX='https://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
@@ -952,36 +952,13 @@ nets = dict(
         BLOCK_PERIOD=60, # s
         SYMBOL='RDD',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Reddcoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Reddcoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.reddcoin'), 'reddcoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://altexplorer.net/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://altexplorer.net/address/',
-        TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
+        BLOCK_EXPLORER_URL_PREFIX='http://cryptexplorer.com/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://cryptexplorer.com/address/',
+        TX_EXPLORER_URL_PREFIX='http://cryptexplorer.com/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0,
     ),
-#    vertcoin=math.Object(
-#        P2P_PREFIX='fabfb5da'.decode('hex'),
-#        P2P_PORT=5889,
-#        ADDRESS_VERSION=71,
-#        RPC_PORT=5888,
-#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-#            'vertcoinaddress' in (yield bitcoind.rpc_help()) and
-#            not (yield bitcoind.rpc_getinfo())['testnet']
-#        )),
-#        SUBSIDY_FUNC=lambda height: 50*100000000 >> (height + 1)//840000,
-#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('vtc_scrypt').getPoWHash(data)),
-#        BLOCK_PERIOD=150, # s
-#        SYMBOL='VTC',
-#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Vertcoin') 
-#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Vertcoin/') 
-#		if platform.system() == 'Darwin' else os.path.expanduser('~/.vertcoin'), 'vertcoin.conf'),
-#        BLOCK_EXPLORER_URL_PREFIX='http://explorer.vertcoin.org/block/',
-#        ADDRESS_EXPLORER_URL_PREFIX='http://explorer.vertcoin.org/address/',
-#        TX_EXPLORER_URL_PREFIX='http://explorer.vertcoin.org/tx/',
-#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-#        DUMB_SCRYPT_DIFF=2**16,
-#        DUST_THRESHOLD=0.03e8,
-#    ),
     tigercoin=math.Object(
         P2P_PREFIX='fab5dfdb'.decode('hex'),
         P2P_PORT=15660,
@@ -1113,6 +1090,28 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
     ),
+    fckbankscoin=math.Object(
+        P2P_PREFIX='fcd9b7dd'.decode('hex'), #stripped from fckbankscoind's main.cpp -> pchMessageStart[4] = { 0xfc, 0xd9, 0xb7, 0xdd };
+        P2P_PORT=21779, #fckbankscoind 's p2p port
+        ADDRESS_VERSION=36, #look again in the sourcecode in the file base58.h, and find the value of PUBKEY_ADDRESS.
+        RPC_PORT=21778, #fckbankscoind 's rpc port
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'fckbankscoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 100000*100000000 >> (height + 1)//100000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=60, # one block generation time
+        SYMBOL='FCK',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'fckbankscoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/fckbankscoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.fckbankscoin'), 'fckbankscoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://explorer.fckbanks.org/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://explorer.fckbanks.org/address/',
+        TX_EXPLORER_URL_PREFIX='http://explorer.fckbanks.org/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1), #??
+        DUMB_SCRYPT_DIFF=2**16, #??
+        DUST_THRESHOLD=0.03e8, #??
+    ),
+
 
 )
 for net_name, net in nets.iteritems():
