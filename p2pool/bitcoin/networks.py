@@ -161,7 +161,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://sbc.blockexplorer.io/tx/',
 	SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     zetacoin=math.Object(
         P2P_PREFIX='fab503df'.decode('hex'), #chainparams.cpp pchMessageStart
@@ -182,7 +182,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://bit.usr.sh:2750/tx/',
         SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
         DUMB_SCRYPT_DIFF=1,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     feathercoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
@@ -203,7 +203,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://cryptocoinexplorer.com:5750/transaction/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     digitalcoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
@@ -224,7 +224,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://dgc.cryptocoinexplorer.com/transaction/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     worldcoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
@@ -245,7 +245,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://wdc.cryptocoinexplorer.com/transaction/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     doubloons=math.Object(
         P2P_PREFIX='fcd9b7dd'.decode('hex'),
@@ -266,7 +266,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://explorer.doubloons.net/transaction/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     casinocoin=math.Object(
         P2P_PREFIX='fac3b6da'.decode('hex'),
@@ -287,7 +287,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://casinocoin.mooo.com/transaction/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     bytecoin=math.Object(
         P2P_PREFIX='f9beef69'.decode('hex'),
@@ -308,7 +308,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://blockexplorer.bytecoin.in/transaction/',
         SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
         DUMB_SCRYPT_DIFF=1,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     asiccoin=math.Object(
         P2P_PREFIX='fab5e8db'.decode('hex'),
@@ -329,7 +329,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://bit.usr.sh:2750/tx/',
         SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
         DUMB_SCRYPT_DIFF=1,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     joulecoin=math.Object(
         P2P_PREFIX='a5c07955'.decode('hex'),
@@ -350,7 +350,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://xjo-explorer.cryptohaus.com:2750/tx/',
         SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
         DUMB_SCRYPT_DIFF=1,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.001e8,
     ),
     unobtanium=math.Object(
         P2P_PREFIX='03d5b503'.decode('hex'), #messagestart
@@ -371,7 +371,7 @@ nets = dict(
 	TX_EXPLORER_URL_PREFIX='http://bit.usr.sh:2750/tx/',
 	SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
         DUMB_SCRYPT_DIFF=1,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.00001e8,
     ),
     dogecoin=math.Object(
         P2P_PREFIX='c0c0c0c0'.decode('hex'),
@@ -382,7 +382,7 @@ nets = dict(
             'dogecoinaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
         )),
-        SUBSIDY_FUNC=lambda height: 10000*100000000,
+        SUBSIDY_FUNC=lambda height: 500000*100000000 >> (height + 1)//100000, #not bullet proof bot will be ok for now
         POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
         BLOCK_PERIOD=60, # s
         SYMBOL='DOGE',
@@ -429,9 +429,9 @@ nets = dict(
         BLOCK_PERIOD=90, # s
         SYMBOL='MOON',
         CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'MoonCoin') if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Mooncoin/') if platform.system() == 'Darwin' else os.path.expanduser('~/.mooncoin'), 'mooncoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://moonchain.info/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://moonchain.info/address/',
-        TX_EXPLORER_URL_PREFIX='http://moonchain.info/tx/',
+        BLOCK_EXPLORER_URL_PREFIX='http://mooncoin.info/abe/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://mooncoin.info/abe/address/',
+        TX_EXPLORER_URL_PREFIX='http://mooncoin.info/abe/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
         DUST_THRESHOLD=0.03e8,
@@ -666,7 +666,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://cryptexplorer.com/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0,
+        DUST_THRESHOLD=0.0001e8,
     ),
     polcoin=math.Object(
         P2P_PREFIX='a5725982'.decode('hex'), #pchmessagestart
@@ -729,7 +729,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.00001,
+        DUST_THRESHOLD=0.001e8,
     ),
     argentum=math.Object(
         P2P_PREFIX='fbc1b8dc'.decode('hex'), #pchmessagestart
@@ -752,7 +752,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://arg.webboise.com/chain/Argentum/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0,
+        DUST_THRESHOLD=0.0001e8,
     ),
     smartcoin=math.Object(
         P2P_PREFIX='defaced0'.decode('hex'), #pchmessagestart
@@ -775,7 +775,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0,
+        DUST_THRESHOLD=0.0001e8,
     ),
     kittehcoin=math.Object(
         P2P_PREFIX='c0c0c0c0'.decode('hex'), #pchmessagestart
@@ -798,99 +798,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://kitexplorer.tk/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.000001,
-    ),
-#    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow|hai zai kai fa zhong
-#        P2P_PREFIX='cdf2c0ef'.decode('hex'), #pchmessagestart
-#        P2P_PORT=19126,
-#        ADDRESS_VERSION=28, #pubkey_address
-#        RPC_PORT=19125,
-#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-#            'cinnamoncoinaddress' in (yield bitcoind.rpc_help()) and
-#            not (yield bitcoind.rpc_getinfo())['testnet']
-#        )),
-#	SUBSIDY_FUNC=lambda height: 64*100000000,
-#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-#        BLOCK_PERIOD=20, # s 
-#        SYMBOL='CIN',
-#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'cinnamoncoin') 
-#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/cinnamoncoin/') 
-#		if platform.system() == 'Darwin' else os.path.expanduser('~/.cinnamoncoin'), 'cinnamoncoin.conf'),
-#        BLOCK_EXPLORER_URL_PREFIX='https://andarazoroflove.org/explorer/cinnamoncoin/block_crawler.php?block_hash=',
-#        ADDRESS_EXPLORER_URL_PREFIX='http://kitexplorer.tk/address/',
-#        TX_EXPLORER_URL_PREFIX='http://kitexplorer.tk/tx/',
-#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-#        DUMB_SCRYPT_DIFF=2**16,
-#        DUST_THRESHOLD=0.000001,
-#    ),
-#    chncoin=math.Object(#ADD chncoin | By Mapleshadow
-#        P2P_PREFIX='fbc0b6db'.decode('hex'),
-#        P2P_PORT=8106,
-#        ADDRESS_VERSION=28,
-#        RPC_PORT=8108,
-#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-#            'chncoinaddress' in (yield bitcoind.rpc_help()) and
-#            not (yield bitcoind.rpc_getinfo())['testnet']
-#        )),
-#        SUBSIDY_FUNC=lambda height: 88*100000000 >> (height + 1)//462528000,
-#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-#        BLOCK_PERIOD=60, # s
-#        SYMBOL='CNC',
-#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'chncoin')
-#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/chncoin/') 
-#		if platform.system() == 'Darwin' else os.path.expanduser('~/.chncoin'), 'chncoin.conf'),
-#        BLOCK_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/block/',
-#        ADDRESS_EXPLORER_URL_PREFIX='http://cnc.cryptocoinexplorer.com/address/',
-#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-#        DUMB_SCRYPT_DIFF=2**16,
-#        DUST_THRESHOLD=1e8,
-#    ),
-#    infinitecoin=math.Object(
-#        P2P_PREFIX='fbc0b6db'.decode('hex'), #pchmessagestart
-#        P2P_PORT=9321,
-#        ADDRESS_VERSION=66, #pubkey_address  0xfb, 0xc0, 0xb6, 0xdb
-#        RPC_PORT=9322,
-#        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-#            'infinitecoinaddress' in (yield bitcoind.rpc_help()) and
-#            not (yield bitcoind.rpc_getinfo())['testnet']
-#        )),
-#        SUBSIDY_FUNC=lambda height: 524288*100000000,
-#        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-#        BLOCK_PERIOD=30, # s
-#        SYMBOL='IFC',
-#        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Infinitecoin') 
-#		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/Infinitecoin/') 
-#		if platform.system() == 'Darwin' else os.path.expanduser('~/.infinitecoin'), 'infinitecoin.conf'),
-#        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info:2758/block/',
-#        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info:2758/address/',
-#        TX_EXPLORER_URL_PREFIX='http://earthchain.info:2758/tx/',
-#        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-#        DUMB_SCRYPT_DIFF=2**16,
-#        DUST_THRESHOLD=0.03e8,
-#    ),
-# By Mapleshadow v1
-    earthcoin=math.Object(
-        P2P_PREFIX='c0dbf1fd'.decode('hex'),
-        P2P_PORT=15677,
-        ADDRESS_VERSION=93,
-        RPC_PORT=15678,
-        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
-            'earthcoinaddress' in (yield bitcoind.rpc_help()) and
-            not (yield bitcoind.rpc_getinfo())['testnet']
-        )),
-        SUBSIDY_FUNC=lambda height: 10000*100000000 >> (height + 1)//525600,
-        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
-        BLOCK_PERIOD=60, # s
-        SYMBOL='EAC',
-        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'earthcoin') 
-		if platform.system() == 'Windows' else os.path.expanduser('~/Library/Application Support/earthcoin/') 
-		if platform.system() == 'Darwin' else os.path.expanduser('~/.earthcoin'), 'earthcoin.conf'),
-        BLOCK_EXPLORER_URL_PREFIX='http://earthchain.info/block/',
-        ADDRESS_EXPLORER_URL_PREFIX='http://earthchain.info/address/',
-        TX_EXPLORER_URL_PREFIX='http://earthchain.info/tx/',
-        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
-        DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=1e8,
+        DUST_THRESHOLD=0.00001e8,
     ),
     leafcoin=math.Object(
         P2P_PREFIX='aaaaaacc'.decode('hex'), #pchmessagestart
@@ -936,7 +844,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.0001,
+        DUST_THRESHOLD=0.001e8,
     ),
     reddcoin=math.Object(
         P2P_PREFIX='fbc0b6db'.decode('hex'),
@@ -998,7 +906,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.0001,
+        DUST_THRESHOLD=0.0001e8,
     ),
     digibyte=math.Object(
         P2P_PREFIX='fac3b6da'.decode('hex'), #pchmessagestart
@@ -1009,7 +917,7 @@ nets = dict(
             'digibyteaddress' in (yield bitcoind.rpc_help()) and
             not (yield bitcoind.rpc_getinfo())['testnet']
         )),
-        SUBSIDY_FUNC=lambda height: 8000*100000000 >> (height + 1)//1051200,
+        SUBSIDY_FUNC=lambda height: __import__('digibyte_subsidy').GetBlockBaseValue(height),
         POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
         BLOCK_PERIOD=60, # s
         SYMBOL='DGB',
@@ -1019,7 +927,7 @@ nets = dict(
         TX_EXPLORER_URL_PREFIX='http://altexplorer.net/tx/',
         SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
         DUMB_SCRYPT_DIFF=2**16,
-        DUST_THRESHOLD=0.0001,
+        DUST_THRESHOLD=0.0001e8,
     ),
     antikeiser=math.Object(
         P2P_PREFIX='fbc0c0c0'.decode('hex'), #pchmessagestart
@@ -1111,7 +1019,51 @@ nets = dict(
         DUMB_SCRYPT_DIFF=2**16, #??
         DUST_THRESHOLD=0.03e8, #??
     ),
-
+    hawaiicoin=math.Object(
+        P2P_PREFIX='7c1f9184'.decode('hex'),
+        P2P_PORT=9335,
+        ADDRESS_VERSION=0,
+        RPC_PORT=9334,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue(
+            'hawaiicoinaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 500*100000000 >> (height + 1)//500000,
+        POW_FUNC=lambda data: pack.IntType(256).unpack(__import__('ltc_scrypt').getPoWHash(data)),
+        BLOCK_PERIOD=50, # s
+        SYMBOL='HIC',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'Hawaiicoin') if platform.system() == 'Windows' 
+				else os.path.expanduser('~/Library/Application Support/Hawaiicoin/') if platform.system() == 'Darwin' 
+				else os.path.expanduser('~/.hawaiicoin'), 'hawaiicoin.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://pool.privanon.com:8080/block/',
+        ADDRESS_EXPLORER_URL_PREFIX='http://pool.privanon.com:8080/address/',
+        TX_EXPLORER_URL_PREFIX='http://pool.privanon.com:8080/tx/',
+        SANE_TARGET_RANGE=(2**256//1000000000 - 1, 2**256//1000 - 1),
+        DUMB_SCRYPT_DIFF=2**16,
+        DUST_THRESHOLD=0.03e8,
+    ),
+    ecurrency=math.Object(
+        P2P_PREFIX='336b59c1'.decode('hex'),
+        P2P_PORT=8080,
+        ADDRESS_VERSION=0,
+        RPC_PORT=8079,
+        RPC_CHECK=defer.inlineCallbacks(lambda bitcoind: defer.returnValue('ecurrencyaddress' in (yield bitcoind.rpc_help()) and
+            not (yield bitcoind.rpc_getinfo())['testnet']
+        )),
+        SUBSIDY_FUNC=lambda height: 100*100000000 >> (height + 1)//450000,
+        POW_FUNC=data.hash256,
+        BLOCK_PERIOD=30, # s
+        SYMBOL='ISO',
+        CONF_FILE_FUNC=lambda: os.path.join(os.path.join(os.environ['APPDATA'], 'ecurrency') if platform.system() == 'Windows' 
+				else os.path.expanduser('~/Library/Application Support/ecurrency/') if platform.system() == 'Darwin' 
+				else os.path.expanduser('~/.ecurrency'), 'ecurrency.conf'),
+        BLOCK_EXPLORER_URL_PREFIX='http://ecurrency.net/block/', #dummy
+        ADDRESS_EXPLORER_URL_PREFIX='http://ecurrency.net/address/',
+        TX_EXPLORER_URL_PREFIX='http://ecrurrency.net/tx/',
+        SANE_TARGET_RANGE=(2**256//2**32//1000 - 1, 2**256//2**32 - 1),
+        DUMB_SCRYPT_DIFF=1,
+        DUST_THRESHOLD=0.001e8,
+    ),
 
 )
 for net_name, net in nets.iteritems():

@@ -323,9 +323,9 @@ nets = dict(
     ),
     dogecoin=math.Object(
         PARENT=networks.nets['dogecoin'],
-        SHARE_PERIOD=15, # seconds target spacing|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
-        CHAIN_LENGTH=12*60*60//15, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
-        REAL_CHAIN_LENGTH=12*60*60//15, # shares|mapleshadow fix|main.cpp return (GetTime() - nLastUpdate < 10 &&
+        SHARE_PERIOD=15, # seconds target spacing
+        CHAIN_LENGTH=12*60*60//15, # shares
+        REAL_CHAIN_LENGTH=12*60*60//15, # shares
         TARGET_LOOKBEHIND=20, # shares coinbase maturity
         SPREAD=10, # blocks
         IDENTIFIER='D0D1D2D3B2F68CD9'.decode('hex'),
@@ -382,13 +382,13 @@ nets = dict(
         REAL_CHAIN_LENGTH=12*60*60//15, # shares
         TARGET_LOOKBEHIND=20, # shares coinbase maturity
         SPREAD=10, # blocks
-        IDENTIFIER='cacacacae0e0e0e0'.decode('hex'),
-        PREFIX='fefecfcf0e0f3434'.decode('hex'),
-        P2P_PORT=8333,
+        IDENTIFIER='c1c2cacfe0e1eae6'.decode('hex'),
+        PREFIX='f1facfff9e0a3414'.decode('hex'),
+        P2P_PORT=8331,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
         PERSIST=False,
-        WORKER_PORT=9333,
+        WORKER_PORT=9331,
         BOOTSTRAP_ADDRS='p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net doge.dtdns.net pool.hostv.pl p2pool.org p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: True,
@@ -675,88 +675,12 @@ nets = dict(
         P2P_PORT=8566,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=True,
+        PERSIST=False,
         WORKER_PORT=9566,
         BOOTSTRAP_ADDRS='lovok.no-ip.com taken.pl meow-il.zapto.org p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org'.split(' '),
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: 80602 <= v,
         VERSION_WARNING=lambda v: 'Upgrade KittehCoin to >= 0.8.6.2!' if v < 80602 else None,
-    ),
-#    cinnamoncoin=math.Object(#Add cinnamoncoin By Mapleshadow |hai zai kai fa zhong
-#        PARENT=networks.nets['cinnamoncoin'],
-#        SHARE_PERIOD=10, # seconds
-#        CHAIN_LENGTH=24*60*60//10, # shares
-#        REAL_CHAIN_LENGTH=24*60*60//10, # shares
-#        TARGET_LOOKBEHIND=20, # shares
-#        SPREAD=6, # blocks
-#        IDENTIFIER='a0c192dbe6e9f1a9'.decode('hex'),
-#        PREFIX='c1c9e9f023e09e7a'.decode('hex'),
-#        P2P_PORT=8658,
-#        MIN_TARGET=0,
-#        MAX_TARGET=2**256//2**20 - 1,
-#        PERSIST=True,
-#        WORKER_PORT=9876,
-#        BOOTSTRAP_ADDRS=''.split(' '),
-#        ANNOUNCE_CHANNEL='#p2pool-alt',
-#        VERSION_CHECK=lambda v: True,
-#    ),
-#    chncoin=math.Object(#ADD chncoin|By Mapleshadow
-#        PARENT=networks.nets['chncoin'],
-#        SHARE_PERIOD=15, # seconds
-#        CHAIN_LENGTH=12*60*60//10, # shares
-#        REAL_CHAIN_LENGTH=12*60*60//10, # shares
-#        TARGET_LOOKBEHIND=200, # shares
-#        SPREAD=30, # blocks
-#        IDENTIFIER='e137d5b8c6923410'.decode('hex'),
-#        PREFIX='7218c1a53ef629b0'.decode('hex'),
-#        P2P_PORT=13389,
-#        MIN_TARGET=0,
-#        MAX_TARGET=2**256//2**20 - 1,
-#        PERSIST=True,
-#        WORKER_PORT=8800,
-#        BOOTSTRAP_ADDRS='pool01-cnc.coinloot.com pool04-cnc.coinloot.com'.split(' '),
-#        ANNOUNCE_CHANNEL='#p2pool-alt',
-#        VERSION_CHECK=lambda v: True,
-#    ),
-#    infinitecoin=math.Object(
-#        PARENT=networks.nets['infinitecoin'],
-#        SHARE_PERIOD=10, # seconds target spacing--
-#        CHAIN_LENGTH=24*60*60//10, # shares--
-#        REAL_CHAIN_LENGTH=24*60*60//10, # shares--
-#        TARGET_LOOKBEHIND=20, # shares coinbase maturity 
-#        SPREAD=60, # blocks---
-#        IDENTIFIER='fc656168639f686e'.decode('hex'),
-#        PREFIX='fe636f818e6c666a'.decode('hex'),
-#        P2P_PORT=10317,
-#        MIN_TARGET=0,
-#        MAX_TARGET=2**256//2**20 - 1,
-#        PERSIST=True,
-#        WORKER_PORT=9068,
-#        BOOTSTRAP_ADDRS=''.split(' '),
-#        ANNOUNCE_CHANNEL='#p2pool-alt',
-#        VERSION_CHECK=lambda v: True,
-#    ),
-# By Mapleshadow v1
-    earthcoin=math.Object(
-        PARENT=networks.nets['earthcoin'],
-        SHARE_PERIOD=10, # seconds
-        CHAIN_LENGTH=3*60*60//5, # shares
-        REAL_CHAIN_LENGTH=3*60*60//5, # shares
-        TARGET_LOOKBEHIND=120, # shares
-        SPREAD=30, # blocks 600/60=10   3*10=30;
-        IDENTIFIER='e137d5b8c6923410'.decode('hex'),
-        PREFIX='7218c1a53ef629b0'.decode('hex'),
-#        P2P_PORT=9338,
-        P2P_PORT=29330,#Errors, they did not know how to solve
-        MIN_TARGET=0,
-        MAX_TARGET=2**256//2**20 - 1,
-        PERSIST=False,
-#        PERSIST=True,#Errors, they did not know how to solve
-        WORKER_PORT=19330,
-        BOOTSTRAP_ADDRS=''.split(' '),
-#        ANNOUNCE_CHANNEL='#spool',
-        ANNOUNCE_CHANNEL='#p2pool-alt',
-        VERSION_CHECK=lambda v: True,
     ),
     leafcoin=math.Object(
         PARENT=networks.nets['leafcoin'],
@@ -855,8 +779,8 @@ nets = dict(
         REAL_CHAIN_LENGTH=12*60*60//10, # shares
         TARGET_LOOKBEHIND=20, # shares diff regulation
         SPREAD=50, # blocks
-        IDENTIFIER='da0fa0c30b6fab6a'.decode('hex'),
-        PREFIX='c30fa0b60da0c3da'.decode('hex'),
+        IDENTIFIER='48a4ebc31b798115'.decode('hex'),
+        PREFIX='5685a276c2dd81db'.decode('hex'),
         P2P_PORT=8022,
         MIN_TARGET=0,
         MAX_TARGET=2**256//2**20 - 1,
@@ -938,6 +862,42 @@ nets = dict(
         ANNOUNCE_CHANNEL='#p2pool-alt',
         VERSION_CHECK=lambda v: 10000 <= v,
         VERSION_WARNING=lambda v: 'Upgrade FCKbankscoin to >=1.0.0.0!' if v < 10000 else None,
+    ),
+    hawaiicoin=math.Object(
+        PARENT=networks.nets['hawaiicoin'],
+        SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=12*60*60//10, # shares
+        REAL_CHAIN_LENGTH=12*60*60//10, # shares
+        TARGET_LOOKBEHIND=20, # shares
+        SPREAD=30, # blocks
+        IDENTIFIER='1f7c84911f8491c8'.decode('hex'),
+        PREFIX='c8c81f1f94949191'.decode('hex'),
+        P2P_PORT=8934,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**20 - 1,
+        PERSIST=False,
+        WORKER_PORT=9834,
+        BOOTSTRAP_ADDRS='p2pool-us.coin-project.org p2pool-eu.coin-project.org p2pool-eu.gotgeeks.com p2pool-us.gotgeeks.com rav3n.dtdns.net doge.dtdns.net pool.hostv.pl p2pool.org p2pool.gotgeeks.com p2pool.dtdns.net solidpool.org taken.pl'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
+    ),
+    ecurrency=math.Object(
+        PARENT=networks.nets['ecurrency'],
+        SHARE_PERIOD=10, # seconds
+        CHAIN_LENGTH=12*60*60//10, # shares
+        REAL_CHAIN_LENGTH=12*60*60//10, # shares
+        TARGET_LOOKBEHIND=20, # shares
+        SPREAD=20, # blocks
+        IDENTIFIER='f0e41ab70eff1e12'.decode('hex'),
+        PREFIX='e01fa73e0af1e40a'.decode('hex'),
+        P2P_PORT=8179,
+        MIN_TARGET=0,
+        MAX_TARGET=2**256//2**32 - 1,
+        PERSIST=False,
+        WORKER_PORT=9179,
+        BOOTSTRAP_ADDRS='46.19.142.14 23.95.9.59 p2pool-eu.eCurrency.io rav3n.dtdns.net pool.hostv.pl p2pool.org solidpool.org taken.pl'.split(' '),
+        ANNOUNCE_CHANNEL='#p2pool-alt',
+        VERSION_CHECK=lambda v: True,
     ),
 
 )
